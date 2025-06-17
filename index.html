@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script type="module" src="./assets/js/logic.js"></script>
+  <script type="module" src="./assets/js/data.js"></script>
+  <script type="module" src="./assets/js/dom.js"></script>
+  <link rel="icon" href="./assets/img/toppng.com-okeball-pokeball-pixel-667x667.png" type="image/png">
+  <title>Pokémon Types</title>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Pokémon Types and Counters</h1>
+      
+      <div class="type-selectors">
+        <select id="type1">
+          <option value="">Select the 1st type</option>
+        </select>
+        <select id="type2">
+          <option value="">Select the 2nd type</option>
+        </select>
+      </div>
+
+      <div class="selected-types">
+        Selecione os tipos para ver as fraquezas
+      </div>
+
+      <div class="damage-grid">
+        <!-- Coluna Deals -->
+            <div class="damage-column">
+                <div class="damage-section">
+                    <h3>Deals 2x to</h3>
+                    <div class="type-list" id="deals-2x"></div>
+                </div>
+                
+                <div class="damage-section">
+                    <h3>Deals 1x to</h3>
+                    <div class="type-list" id="deals-1x"></div>
+                </div>
+                
+                <div class="damage-section">
+                    <h3>Deals ½x to</h3>
+                    <div class="type-list" id="deals-half"></div>
+                </div>
+                
+                <div class="damage-section">
+                    <h3>Deals 0x to</h3>
+                    <div class="type-list" id="deals-0x"></div>
+                </div>
+            </div>
+        
+        <!-- Coluna Takes -->
+        <div class="damage-column">
+          <div class="damage-section">
+            <h3>Takes 4x From</h3>
+            <div class="type-list" id="takes-4x"></div>
+          </div>
+
+          <div class="damage-section">
+            <h3>Takes 2x From</h3>
+            <div class="type-list" id="takes-2x"></div>
+          </div>
+          
+          <div class="damage-section">
+            <h3>Takes 1x From</h3>
+            <div class="type-list" id="takes-1x"></div>
+          </div>
+          
+          <div class="damage-section">
+            <h3>Takes ½x From</h3>
+            <div class="type-list" id="takes-half"></div>
+          </div>
+
+          <div class="damage-section">
+            <h3>Takes ¼x From</h3>
+            <div class="type-list" id="takes-quarter"></div>
+          </div>
+          
+          <div class="damage-section">
+            <h3>Takes 0x From</h3>
+            <div class="type-list" id="takes-0"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-text">
+        Desenvolvido por <a class="hyperlink-footer" href="https://www.linkedin.com/in/ianmenezesss/">&lt;Ian/Menezes&gt;</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
