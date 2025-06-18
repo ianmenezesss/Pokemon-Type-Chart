@@ -51,6 +51,23 @@ h1 {
   min-width: 200px;
 }
 
+.type-selectors select {
+  color: #555; /* Cor do texto */
+  position: relative;
+}
+
+.type-selectors select:invalid {
+  color: #999; /* Cor do placeholder */
+}
+
+.type-selectors select option {
+  color: #333; /* Cor do texto das opções */
+}
+
+.type-selectors select option[value=""] {
+  display: none; /* Esconde a opção vazia */
+}
+
 .selected-types {
   text-align: center;
   margin: 15px 0;

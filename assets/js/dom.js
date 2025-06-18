@@ -8,6 +8,20 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentType1 = '';
   let currentType2 = '';
 
+  // Add placeholder options (not selectable)
+  const addPlaceholderOption = (select, text) => {
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = text;
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.hidden = true;
+    select.appendChild(placeholder);
+  };
+
+  addPlaceholderOption(type1Select, 'Select the 1st type');
+  addPlaceholderOption(type2Select, 'Select the 2nd type');
+
   // Populate type selectors
   allTypes.forEach(type => {
     const option1 = document.createElement('option');
@@ -23,19 +37,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Event listeners
   type1Select.addEventListener('change', function() {
-    if (this.value === currentType2) { // Prevent same type selection
-      this.value = currentType1; // Reset to previous type
-      return;
+    if (!this.value) {
+        currentType1 = '';
+        updateTypeChart();
+        return;
     }
+
+    if (this.value === currentType2) {
+        currentType2 = '';
+        type2Select.value = '';
+    }
+
     currentType1 = this.value;
     updateTypeChart();
   });
 
   type2Select.addEventListener('change', function() {
-    if (this.value === currentType1) { // Prevent same type selection
-      this.value = currentType2; // Reset to previous type
-      return;
+    if (!this.value) {
+        currentType2 = '';
+        updateTypeChart();
+        return;
     }
+  
+    if (this.value === currentType1) {
+        currentType1 = '';
+        type1Select.value = '';
+    }
+    
     currentType2 = this.value;
     updateTypeChart();
   });
@@ -71,14 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.selected-types');
     header.innerHTML = '';
     
-    if (type1) {
+    if (type1 && !type2) {
       const type1Pill = document.createElement('span');
       type1Pill.className = `type-pill type-${type1.toLowerCase()}`;
       type1Pill.textContent = type1;
       header.appendChild(type1Pill);
     }
+
+    if (type2 && !type1) {
+      const type2Pill = document.createElement('span');
+      type2Pill.className = `type-pill type-${type2.toLowerCase()}`;
+      type2Pill.textContent = type2;
+      header.appendChild(type2Pill);
+    }
     
-    if (type2) {
+    if (type2 && type1) {
+      const type1Pill = document.createElement('span');
+      type1Pill.className = `type-pill type-${type1.toLowerCase()}`;
+      type1Pill.textContent = type1;
+      header.appendChild(type1Pill);
+      
       const plus = document.createElement('span');
       plus.textContent = ' + ';
       plus.style.margin = '0 5px';

@@ -42,6 +42,30 @@ export function calculateCombinedType(type1, type2) {
       takes0x: singleTypeData.takes0x
     };
   }
+
+    if (!type1) {
+    const singleTypeData = typeChart[type2];
+    return {
+      deals2x: singleTypeData.deals2x,
+      deals1x: allTypes.filter(t => 
+        !singleTypeData.deals2x.includes(t) && 
+        !singleTypeData.dealsHalf.includes(t) && 
+        !singleTypeData.deals0x.includes(t)
+      ),
+      dealsHalf: singleTypeData.dealsHalf,
+      deals0x: singleTypeData.deals0x,
+      takes4x: [],
+      takes2x: singleTypeData.takes2x,
+      takes1x: allTypes.filter(t => 
+        !singleTypeData.takes2x.includes(t) && 
+        !singleTypeData.takesHalf.includes(t) && 
+        !singleTypeData.takes0x.includes(t)
+      ),
+      takesHalf: singleTypeData.takesHalf,
+      takesquarter: [],
+      takes0x: singleTypeData.takes0x
+    };
+  }
   
   // Calculate damage dealt (attack effectiveness)
   allTypes.forEach(defenseType => {
