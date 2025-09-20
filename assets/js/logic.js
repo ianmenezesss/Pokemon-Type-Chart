@@ -18,7 +18,7 @@ export function calculateCombinedType(type1, type2) {
     takes0x: []
   };
   
-  // If only one type is selected
+  // If only the 1st type is selected
   if (!type2) {
     const singleTypeData = typeChart[type1];
     return {
@@ -43,6 +43,7 @@ export function calculateCombinedType(type1, type2) {
     };
   }
 
+  // If only the 2nd type is selected
     if (!type1) {
     const singleTypeData = typeChart[type2];
     return {
@@ -71,7 +72,7 @@ export function calculateCombinedType(type1, type2) {
   allTypes.forEach(defenseType => {
     const type1Effect = getOffensiveEffectiveness(type1, defenseType);
     const type2Effect = getOffensiveEffectiveness(type2, defenseType);
-    const bestEffect = Math.max(type1Effect, type2Effect);;
+    const bestEffect = Math.max(type1Effect, type2Effect);; // Use only the best type effectiveness from one of the types, easyest way to combine damage dealt
     
     if (bestEffect === 0) {
       result.deals0x.push(defenseType);
@@ -88,7 +89,7 @@ export function calculateCombinedType(type1, type2) {
   allTypes.forEach(attackType => {
     const type1Effect = getDefensiveEffectiveness(type1, attackType);
     const type2Effect = getDefensiveEffectiveness(type2, attackType);
-    const combinedEffect = type1Effect * type2Effect;
+    const combinedEffect = type1Effect * type2Effect; // Multiply the effects of both types to see the defensive weakness
     
     if (combinedEffect === 0) {
       result.takes0x.push(attackType);
@@ -105,7 +106,7 @@ export function calculateCombinedType(type1, type2) {
     }
   });
   
-  // Remove duplicates and sort
+  // Remove duplicates and sort using Set and sort
   result.deals2x = [...new Set(result.deals2x)].sort();
   result.deals1x = [...new Set(result.deals1x)].sort();
   result.dealsHalf = [...new Set(result.dealsHalf)].sort();
@@ -142,7 +143,8 @@ export function getOffensiveEffectiveness(attackType, defenseType) {
   if (attackData.deals2x.includes(defenseType)) return 2;
   if (attackData.dealsHalf.includes(defenseType)) return 0.5;
   if (attackData.deals0x.includes(defenseType)) return 0;
-  
+
+  // If no specific effectiveness, return 1 (neutral damage)
   return 1;
 }
 
@@ -153,6 +155,7 @@ export function getDefensiveEffectiveness(defenseType, attackType) {
   if (defenseData.takes0x.includes(attackType)) return 0;
   if (defenseData.takesHalf.includes(attackType)) return 0.5;
   if (defenseData.takes2x.includes(attackType)) return 2;
-  
+
+  // If no specific effectiveness, return 1 (neutral defense)
   return 1;
 }

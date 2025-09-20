@@ -178,6 +178,5 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.selected-types').textContent = 'Select the types to see weaknesses';
   }
   
-  // Initialize with empty chart
   clearAllSections();
 });
